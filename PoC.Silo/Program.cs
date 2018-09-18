@@ -32,6 +32,9 @@ namespace PoC.Silo
 
         public Program()
         {
+            var t = typeof(DeviceGrain);
+            Console.WriteLine("Type:{t}");
+
             silo = new SiloHostBuilder()
                 .UseLocalhostClustering()
                 .Configure((ClusterOptions options) =>
@@ -39,8 +42,8 @@ namespace PoC.Silo
                     options.ServiceId = "PoCService";
                     options.ClusterId = "dev"; // TODO Set cluster id
                 })
-                .Configure<EndpointOptions>(options => options.AdvertisedIPAddress = IPAddress.Loopback)
-                .Configure((ProcessExitHandlingOptions options) => options.FastKillOnProcessExit = false)
+                //.Configure<EndpointOptions>(options => options.AdvertisedIPAddress = IPAddress.Loopback)
+                //.Configure((ProcessExitHandlingOptions options) => options.FastKillOnProcessExit = false)
                 .ConfigureLogging(logging =>
                 {
 #if DEBUG
@@ -50,20 +53,20 @@ namespace PoC.Silo
 #endif
                     logging.AddConsole();
                 })
-                .ConfigureApplicationParts(parts =>
-                    parts.AddApplicationPart(typeof(DeviceGrain).Assembly).WithReferences()
-                )
+                //.ConfigureApplicationParts(parts =>
+                //    parts.AddApplicationPart(typeof(DeviceGrain).Assembly).WithReferences()
+                //)
                 /* Configure in-memory storage */
-                .AddMemoryGrainStorageAsDefault()
-                .AddMemoryGrainStorage("PubSubStore")
-                .AddMemoryGrainStorage("GrainStore")
-                .UseInMemoryReminderService()
+                //.AddMemoryGrainStorageAsDefault()
+                //.AddMemoryGrainStorage("PubSubStore")
+                //.AddMemoryGrainStorage("GrainStore")
+                //.UseInMemoryReminderService()
                 ///////
-                .AddSimpleMessageStreamProvider("SMSProvider", options =>
-                {
-                    options.FireAndForgetDelivery    = true;
-                    options.OptimizeForImmutableData = true;
-                })
+                //.AddSimpleMessageStreamProvider("SMSProvider", options =>
+                //{
+                //    options.FireAndForgetDelivery    = true;
+                //    options.OptimizeForImmutableData = true;
+                //})
                 .Build();
         }
 

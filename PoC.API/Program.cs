@@ -14,7 +14,8 @@ namespace PoC.API
     {
         public static void Main(string[] args)
         {
-            CreateWebHostBuilder(args).Build().Run();
+            //CreateWebHostBuilder(args).Build().Run();
+            var client = Startup.CreateClusterClient();
         }
 
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
