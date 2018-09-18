@@ -7,7 +7,7 @@
     <LangVersion>latest</LangVersion>
     <TieredCompilation>true</TieredCompilation>
     <ServerGarbageCollection>true</ServerGarbageCollection>
-    <DockerComposeProjectPath>..\docker-compose.dcproj</DockerComposeProjectPath>
+    <!-- DockerComposeProjectPath>..\docker-compose.dcproj</DockerComposeProjectPath -->
   </PropertyGroup>
 
   <ItemGroup>
@@ -16,7 +16,7 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.App" />
-    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.0.1916590" />
+    <!-- PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.0.1916590" / -->
   </ItemGroup>
 
   <ItemGroup>
