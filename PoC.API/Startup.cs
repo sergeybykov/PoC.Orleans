@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
@@ -23,29 +20,29 @@ namespace PoC.API
         public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
-        public void ConfigureServices(IServiceCollection services)
-        {
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+        //public void ConfigureServices(IServiceCollection services)
+        //{
+        //    services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
-            // Add Orleans client
-            //services.AddSingleton(CreateClusterClient);
-        }
+        //    // Add Orleans client
+        //    //services.AddSingleton(CreateClusterClient);
+        //}
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
-        {
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-            }
-            else
-            {
-                app.UseHsts();
-            }
+        //// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+        //public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        //{
+        //    if (env.IsDevelopment())
+        //    {
+        //        app.UseDeveloperExceptionPage();
+        //    }
+        //    else
+        //    {
+        //        app.UseHsts();
+        //    }
 
-            //app.UseHttpsRedirection();
-            app.UseMvc();
-        }
+        //    //app.UseHttpsRedirection();
+        //    app.UseMvc();
+        //}
 
         /// <summary>
         /// Create a cluster client
@@ -55,7 +52,7 @@ namespace PoC.API
             //var log = serviceProvider.GetService<ILogger<Startup>>();
 
             var t = typeof(IDeviceGrain);
-            Console.WriteLine("Type:{t}");
+            Console.WriteLine($"Type:{t.FullName}");
 
             var client = new ClientBuilder()
                 .UseLocalhostClustering()
@@ -69,7 +66,7 @@ namespace PoC.API
                 //    options.FireAndForgetDelivery    = true;
                 //    options.OptimizeForImmutableData = true;
                 //})
-                .ConfigureLogging(logging => logging.AddConsole())
+                //.ConfigureLogging(logging => logging.AddConsole())
                 //.ConfigureApplicationParts(parts =>
                 //    parts.AddApplicationPart(typeof(IDeviceGrain).Assembly).WithReferences())
                 .Build();
